@@ -5,7 +5,7 @@ from element import Element
 import random
 
 
-def generate_square_data(sheet):
+def generate_slope_data(sheet):
     counter = 0
     for row in range(2, 10):
         skipped_cell = False
@@ -27,7 +27,7 @@ def create_element_data(element: Element):
     # Create 2 data sheets
     for i in range(2):
         ws = wb.create_sheet('DataSheet{}'.format(i))
-        generate_square_data(ws)
+        generate_slope_data(ws)
 
 
     wb.save('Element.xlsx')
