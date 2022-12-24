@@ -1,7 +1,8 @@
 import sys
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
-from rocket import Rocket
+from element import Element
+
 
 def generate_square_data(sheet):
     counter = 0
@@ -11,11 +12,12 @@ def generate_square_data(sheet):
             cell.value = counter
             counter += 1
 
-def create_rocket_data(rocket: Rocket):
+
+def create_element_data(element: Element):
     # opens with 1 default sheet
     wb = Workbook()
-    wb.active.title = '{} RocketStats'.format(rocket.name)
-    rocket.write_to_sheet(wb.active)
+    wb.active.title = '{} ElementStats'.format(element.name)
+    element.write_to_sheet(wb.active)
 
     # Create 2 data sheets
     for i in range(2):
@@ -23,14 +25,14 @@ def create_rocket_data(rocket: Rocket):
         generate_square_data(ws)
 
 
-    wb.save('RocketStats.xlsx')
+    wb.save('Element.xlsx')
     return
 
 
 if __name__ == '__main__':
     if sys.argv[1] == 'generate':
-        myrocket = Rocket('funky', '1000', '349')
-        create_rocket_data(myrocket)
+        hydrogen = Element('Hydrogen', '8.675309', '1')
+        create_element_data(hydrogen)
     elif sys.argv[1] == 'derive':
         print('gotta implement this')
 
